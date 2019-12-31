@@ -7,8 +7,22 @@ export default (appInfo: EggAppInfo) => {
   // use for cookie sign key, should change to your own and keep security
   config.keys = appInfo.name + '_1576807997152_8152';
 
+  config.security = {
+    csrf: {
+      ignore: () => true,
+    },
+  };
+
   // add your egg config in here
-  config.middleware = [];
+  config.middleware = [ 'graphql' ];
+
+  config.graphql = {
+    router: '/graphql',
+    // 是否加载到 app 上，默认开启
+    app: true,
+    // 是否加载到 agent 上，默认关闭
+    agent: false,
+  };
 
   // add your special config in here
   const bizConfig = {
