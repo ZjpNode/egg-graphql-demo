@@ -1,3 +1,10 @@
+/*
+ * @Author       : jiapeng.Zheng
+ * @Date         : 2019-12-20 10:13:37
+ * @LastEditors  : jiapeng.Zheng
+ * @LastEditTime : 2020-01-02 17:03:20
+ * @Description  :
+ */
 import { EggAppConfig, EggAppInfo, PowerPartial } from 'egg';
 
 export default (appInfo: EggAppInfo) => {
@@ -14,14 +21,15 @@ export default (appInfo: EggAppInfo) => {
   };
 
   // add your egg config in here
-  config.middleware = [ 'graphql' ];
+  // config.middleware = [ 'graphql' ];
 
-  config.graphql = {
+  config.typeGraphQL = {
     router: '/graphql',
-    // 是否加载到 app 上，默认开启
-    app: true,
-    // 是否加载到 agent 上，默认关闭
-    agent: false,
+    dateScalarMode: 'isoDate',
+    typeDefs: `
+      directive @upperCase on FIELD_DEFINITION | FIELD
+      directive @dateFormat(format: String) on FIELD_DEFINITION | FIELD
+    `,
   };
 
   // add your special config in here

@@ -2,7 +2,7 @@
  * @Author       : jiapeng.Zheng
  * @Date         : 2019-12-20 10:13:37
  * @LastEditors  : jiapeng.Zheng
- * @LastEditTime : 2020-01-02 11:09:08
+ * @LastEditTime : 2020-01-02 16:33:55
  * @Description  :
  */
 import { EggPlugin } from 'egg';
@@ -13,10 +13,10 @@ const plugin: EggPlugin = {
   //   enable: true,
   //   package: 'egg-view-nunjucks',
   // },
-  // graphql: {
-  //   enable: true,
-  //   package: 'egg-graphql',
-  // },
+  typeGraphQL: {
+    enable: true,
+    package: 'egg-type-graphql',
+  },
 };
 
 export default plugin;
