@@ -22,13 +22,14 @@
     "clean": "ets clean"
   },
   "dependencies": {
+    "class-transformer": "^0.2.3",
+    "class-validator": "^0.11.0",
     "date-fns": "^2.8.1",
     "egg": "^2.6.1",
     "egg-scripts": "^2.6.0",
     "egg-type-graphql": "^1.8.1"
   },
   "devDependencies": {
-    "@types/graphql": "^14.5.0",
     "@types/mocha": "^2.2.40",
     "@types/node": "^7.0.12",
     "@types/supertest": "^2.0.0",

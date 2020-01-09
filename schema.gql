@@ -3,13 +3,61 @@
 # !!!   DO NOT MODIFY THIS FILE BY YOURSELF   !!!
 # -----------------------------------------------
 
+type Actor {
+  name: String!
+  age: Int
+}
+
 """
 The javascript `Date` as string. Type represents date and time as the ISO Date string.
 """
 scalar DateTime
 
+"""代表方向的枚举类型"""
+enum Direction {
+  UP
+  DOWN
+  LEFT
+  RIGHT
+}
+
+type Movie {
+  name: String!
+  rating: Float!
+}
+
+type Mutation {
+  addUser(input: UserInput!): User!
+  addPersion(input: PersionInput!): Persion!
+  addRecipe(newRecipeData2: NewRecipeInput!): Recipe!
+}
+
+"""Recipe add 对象"""
+input NewRecipeInput {
+  title: String!
+  description: String
+  ingredients: [String!]!
+}
+
+"""Persion 对象"""
+type Persion {
+  myName: String!
+  myDescription: String
+}
+
+"""Persion add 对象"""
+input PersionInput {
+  myName: String!
+}
+
 type Query {
+  getAllpersion(first: Int!): [Persion!]!
+  getAlluser(first: Int!): [User!]!
   recipe: Recipe
+  recipes(skip: Int = 0, take: Int = 25, direction: Direction!, title: String, text: String!): [Recipe!]
+  recipesByValidateArgs(skip: Int = 0, take: Int = 25, direction: Direction!, title: String, text: String!): [Recipe!]
+  recipesDisableValidateArgs(skip: Int = 0, take: Int = 25, direction: Direction!, title: String, text: String!): [Recipe!]
+  search(phrase: String!): [SearchResult!]!
 }
 
 """Recipe 对象"""
@@ -21,4 +69,23 @@ type Recipe {
 
   """创建时间"""
   createdAt: DateTime
+
+  """评级"""
+  ratings: [Int!]!
+  direction: String!
+  averageRating: Float!
+}
+
+"""联合类型"""
+union SearchResult = Movie | Actor
+
+"""User 对象"""
+type User {
+  name: String!
+  description: String
+}
+
+"""User add 对象"""
+input UserInput {
+  name: String!
 }

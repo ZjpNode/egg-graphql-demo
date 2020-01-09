@@ -2,10 +2,13 @@
  * @Author       : jiapeng.Zheng
  * @Date         : 2019-12-20 10:13:37
  * @LastEditors  : jiapeng.Zheng
- * @LastEditTime : 2020-01-02 17:03:20
+ * @LastEditTime : 2020-01-09 16:10:56
  * @Description  :
  */
 import { EggAppConfig, EggAppInfo, PowerPartial } from 'egg';
+
+import { ResolveTimeMiddleware } from '../app/graphql/middlewares/resolve-time';
+import { ErrorLoggerMiddleware } from '../app/graphql/middlewares/error-logger';
 
 export default (appInfo: EggAppInfo) => {
   const config = {} as PowerPartial<EggAppConfig>;
@@ -30,6 +33,7 @@ export default (appInfo: EggAppInfo) => {
       directive @upperCase on FIELD_DEFINITION | FIELD
       directive @dateFormat(format: String) on FIELD_DEFINITION | FIELD
     `,
+    globalMiddlewares: [ ResolveTimeMiddleware, ErrorLoggerMiddleware ],
   };
 
   // add your special config in here
